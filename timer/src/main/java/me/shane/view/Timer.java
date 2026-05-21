@@ -5,9 +5,9 @@ import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 
 public class Timer extends HBox {
-    final CustomSpinner hourSpinner;
-    final CustomSpinner minuteSpinner;
-    final CustomSpinner secondSpinner;
+    CustomSpinner hourSpinner;
+    CustomSpinner minuteSpinner;
+    CustomSpinner secondSpinner;
     Button actionButton;
 
     public Timer() {

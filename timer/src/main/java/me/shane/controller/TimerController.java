@@ -21,13 +21,13 @@ public class TimerController {
     }
 
     private void startTimer() {
-        /*hours.setEditable(false);
+        hours.setEditable(false);
         hours.setArrowsVisible(false);
         minutes.setEditable(false);
         minutes.setArrowsVisible(false);
         seconds.setEditable(false);
         seconds.setArrowsVisible(false);
-        timerView.getActionButton().setDisable(true);*/
+        timerView.getActionButton().setDisable(true);
 
         totalSeconds = (hours.getValue() * 3600) + (minutes.getValue() * 60) + seconds.getValue();
 
@@ -40,6 +40,13 @@ public class TimerController {
 
             } else {
                 timeline.stop();
+                hours.setEditable(true);
+                hours.setArrowsVisible(true);
+                minutes.setEditable(true);
+                minutes.setArrowsVisible(true);
+                seconds.setEditable(true);
+                seconds.setArrowsVisible(true);
+                timerView.getActionButton().setDisable(false);
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
