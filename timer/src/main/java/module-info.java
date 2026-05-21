@@ -1,5 +1,5 @@
 module me.shane {
-    requires javafx.controls;
+    requires transitive javafx.controls;
 
     exports me.shane.main;
 }

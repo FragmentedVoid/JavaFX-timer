@@ -1,5 +1,5 @@
 package me.shane.view;
 
-public class Userview {
+public class Stopwatch {
     
 }
