@@ -16,11 +16,11 @@ public class Userview extends BorderPane {
 
         // Set the action for each button to switch to the corresponding view
         timerButton.setOnAction(e -> setCenter(timerController.getTimerView()));
-        //stopwatchButton.setOnAction(e -> setCenter(new Stopwatch()));
+        stopwatchButton.setOnAction(e -> setCenter(new Stopwatch()));
         alarmButton.setOnAction(e -> setCenter(new Alarmlist()));
 
         // Create a VBox to hold the buttons and add it to the left side of the BorderPane
-        HBox buttonBox = new HBox(10, timerButton, alarmButton);
+        HBox buttonBox = new HBox(10, alarmButton, timerButton, stopwatchButton);
         setBottom(buttonBox);
         buttonBox.setAlignment(Pos.CENTER);
     }

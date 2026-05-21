@@ -10,7 +10,7 @@ public class Alarm extends HBox{
     private TextField alarmLable;
 
     public Alarm() {
-        toggleAlarm = new Button("Toggle Alarm");
+        toggleAlarm = new Button("OFF");
         hourSpinner = new CustomSpinner(0, 23, 0);
         minuteSpinner = new CustomSpinner(0, 59, 0);
         alarmLable = new TextField();
