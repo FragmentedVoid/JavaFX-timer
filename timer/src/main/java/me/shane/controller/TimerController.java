@@ -17,7 +17,7 @@ public class TimerController {
         this.hours = timerView.getHour();
         this.minutes = timerView.getMinute();
         this.seconds = timerView.getSecond();
-        this.timerView.getActionButton().setOnAction(e -> startTimer());
+        timerView.getActionButton().setOnAction(e -> startTimer());
     }
 
     private void startTimer() {
