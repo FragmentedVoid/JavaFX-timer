@@ -21,13 +21,27 @@ public class TimerController {
     }
 
     private void startTimer() {
+        boolean isRunning = timeline != null && timeline.getStatus() == Animation.Status.RUNNING;
+
+        if (isRunning) {
+            timeline.stop();
+            hours.setEditable(true);
+            hours.setArrowsVisible(true);
+            minutes.setEditable(true);
+            minutes.setArrowsVisible(true);
+            seconds.setEditable(true);
+            seconds.setArrowsVisible(true);
+            timerView.getActionButton().setText("Start Timer");
+            return;
+        }
+        
+        timerView.getActionButton().setText("Stop Timer");
         hours.setEditable(false);
         hours.setArrowsVisible(false);
         minutes.setEditable(false);
         minutes.setArrowsVisible(false);
         seconds.setEditable(false);
         seconds.setArrowsVisible(false);
-        timerView.getActionButton().setDisable(true);
 
         totalSeconds = (hours.getValue() * 3600) + (minutes.getValue() * 60) + seconds.getValue();
 
@@ -46,7 +60,6 @@ public class TimerController {
                 minutes.setArrowsVisible(true);
                 seconds.setEditable(true);
                 seconds.setArrowsVisible(true);
-                timerView.getActionButton().setDisable(false);
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
