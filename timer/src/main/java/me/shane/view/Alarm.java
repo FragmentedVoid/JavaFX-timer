@@ -17,4 +17,16 @@ public class Alarm extends HBox{
 
         this.getChildren().addAll(hourSpinner, minuteSpinner, alarmLable, toggleAlarm);
     }
+
+    public Button getToggleAlarm() {
+        return toggleAlarm;
+    }
+
+    public CustomSpinner getHourSpinner() {
+        return hourSpinner;
+    }
+
+    public CustomSpinner getMinuteSpinner() {
+        return minuteSpinner;
+    }
 }

@@ -3,7 +3,6 @@ package me.shane.view;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.*;
 import javafx.geometry.Pos;
 import me.shane.controller.StopwatchController;
 

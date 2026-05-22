@@ -1,0 +1,60 @@
+package me.shane.controller;
+
+import me.shane.view.*;
+import java.time.LocalTime;
+import javafx.animation.*;
+import javafx.util.Duration;
+import javafx.scene.media.*;
+
+public class AlarmController {
+    private Alarm alarm;
+    private LocalTime alarmTime;
+    int alarmHour;
+    int alarmMinute;
+    Timeline timeline;
+
+    public AlarmController(Alarm alarm) {
+        this.alarm = alarm;
+        alarm.getToggleAlarm().setOnAction(e -> toggleAlarm());
+    }
+
+    private void toggleAlarm() {
+        System.out.println(alarm.getHourSpinner().getValue() + ":" + alarm.getMinuteSpinner().getValue());
+        if (alarm.getToggleAlarm().getText().equals("OFF")) {
+            alarm.getToggleAlarm().setText("ON");
+            alarm.getHourSpinner().setEditable(false);
+            alarm.getHourSpinner().setArrowsVisible(false);
+            alarm.getMinuteSpinner().setEditable(false);
+            alarm.getMinuteSpinner().setArrowsVisible(false);
+            timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+                alarmTime = LocalTime.now();
+                alarmHour = alarm.getHourSpinner().getValue();
+                alarmMinute = alarm.getMinuteSpinner().getValue();
+                System.out.println("Current Time: " + alarmTime.getHour() + ":" + alarmTime.getMinute());
+                if (alarmTime.getHour() == alarmHour && alarmTime.getMinute() == alarmMinute) {
+                    timeline.stop();
+                    alarm.getHourSpinner().setEditable(true);
+                    alarm.getHourSpinner().setArrowsVisible(true);
+                    alarm.getMinuteSpinner().setEditable(true);
+                    alarm.getMinuteSpinner().setArrowsVisible(true);
+                    alarm.getToggleAlarm().setText("OFF");
+                    Media sound = new Media(getClass().getResource("/alarm_sound.mp3").toExternalForm());
+                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                    mediaPlayer.play();
+                }
+            }));
+        } else {
+            alarm.getHourSpinner().setEditable(true);
+            alarm.getHourSpinner().setArrowsVisible(true);
+            alarm.getMinuteSpinner().setEditable(true);
+            alarm.getMinuteSpinner().setArrowsVisible(true);
+            alarm.getToggleAlarm().setText("OFF");
+        }
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    public Alarm getAlarmView() {
+        return alarm;
+    }
+}
