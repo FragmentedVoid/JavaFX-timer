@@ -3,6 +3,8 @@ package me.shane.controller;
 import me.shane.view.*;
 import javafx.animation.*;
 import javafx.util.Duration;
+import javafx.scene.media.*;
+import java.io.File;
 
 public class TimerController {
     private Timeline timeline;
@@ -11,6 +13,7 @@ public class TimerController {
     CustomSpinner hours;
     CustomSpinner minutes;
     CustomSpinner seconds;
+    File soundFile;
 
     public TimerController(Timer timerView) {
         this.timerView = timerView;
@@ -18,6 +21,7 @@ public class TimerController {
         this.minutes = timerView.getMinute();
         this.seconds = timerView.getSecond();
         timerView.getActionButton().setOnAction(e -> startTimer());
+        soundFile = new File("C:\\Windows\\Media\\Ring03.wav");
     }
 
     private void startTimer() {
@@ -60,6 +64,8 @@ public class TimerController {
                 minutes.setArrowsVisible(true);
                 seconds.setEditable(true);
                 seconds.setArrowsVisible(true);
+                AudioClip sound = new AudioClip(soundFile.toURI().toString());
+                sound.play();
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

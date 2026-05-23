@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import javafx.animation.*;
 import javafx.util.Duration;
 import javafx.scene.media.*;
+import java.io.File;
 
 public class AlarmController {
     private Alarm alarm;
@@ -12,9 +13,11 @@ public class AlarmController {
     int alarmHour;
     int alarmMinute;
     Timeline timeline;
+    File soundFile;
 
     public AlarmController(Alarm alarm) {
         this.alarm = alarm;
+        soundFile = new File("C:\\Windows\\Media\\Ring03.wav");
         alarm.getToggleAlarm().setOnAction(e -> toggleAlarm());
     }
 
@@ -38,9 +41,8 @@ public class AlarmController {
                     alarm.getMinuteSpinner().setEditable(true);
                     alarm.getMinuteSpinner().setArrowsVisible(true);
                     alarm.getToggleAlarm().setText("OFF");
-                    Media sound = new Media(getClass().getResource("/alarm_sound.mp3").toExternalForm());
-                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                    mediaPlayer.play();
+                    AudioClip sound = new AudioClip(soundFile.toURI().toString());
+                    sound.play();
                 }
             }));
         } else {
