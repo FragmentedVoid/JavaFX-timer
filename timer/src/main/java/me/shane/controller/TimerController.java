@@ -1,6 +1,8 @@
 package me.shane.controller;
 
 import me.shane.view.*;
+import javafx.scene.control.*;
+import javafx.scene.shape.*;
 import javafx.animation.*;
 import javafx.util.Duration;
 import javafx.scene.media.*;
@@ -9,17 +11,20 @@ import java.io.File;
 public class TimerController {
     private Timeline timeline;
     int totalSeconds;
+    int progressSeconds;
     Timer timerView;
     CustomSpinner hours;
     CustomSpinner minutes;
     CustomSpinner seconds;
     File soundFile;
+    Arc progressBar;
 
     public TimerController(Timer timerView) {
         this.timerView = timerView;
         this.hours = timerView.getHour();
         this.minutes = timerView.getMinute();
         this.seconds = timerView.getSecond();
+        progressBar = new Arc();
         timerView.getActionButton().setOnAction(e -> startTimer());
         soundFile = new File("C:\\Windows\\Media\\Ring03.wav");
     }
@@ -48,16 +53,21 @@ public class TimerController {
         seconds.setArrowsVisible(false);
 
         totalSeconds = (hours.getValue() * 3600) + (minutes.getValue() * 60) + seconds.getValue();
+        progressSeconds = totalSeconds;
+
 
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-            if (totalSeconds > 0) {
-                totalSeconds--;
-                hours.getValueFactory().setValue(totalSeconds / 3600);
-                minutes.getValueFactory().setValue((totalSeconds % 3600) / 60);
-                seconds.getValueFactory().setValue(totalSeconds % 60);
+            if (progressSeconds > 0) {
+                progressSeconds--;
+                hours.getValueFactory().setValue(progressSeconds / 3600);
+                minutes.getValueFactory().setValue((progressSeconds % 3600) / 60);
+                seconds.getValueFactory().setValue(progressSeconds % 60);
+                progressBar.setLength(360 * ((double) progressSeconds / (double) totalSeconds));
 
             } else {
                 timeline.stop();
+                timerView.getActionButton().setText("Start Timer");
+                progressBar.setLength(360);
                 hours.setEditable(true);
                 hours.setArrowsVisible(true);
                 minutes.setEditable(true);
@@ -70,6 +80,10 @@ public class TimerController {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+    }
+
+    public Arc getProgressBar() {
+        return progressBar;
     }
 
     public Timer getTimerView() {
