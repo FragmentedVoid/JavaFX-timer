@@ -43,6 +43,7 @@ public class TimerController {
             return;
         }
         
+        progressBar.setLength(360);
         timerView.getActionButton().setText("Stop Timer");
         hours.setEditable(false);
         hours.setArrowsVisible(false);
@@ -66,7 +67,6 @@ public class TimerController {
             } else {
                 timeline.stop();
                 timerView.getActionButton().setText("Start Timer");
-                progressBar.setLength(360);
                 hours.setEditable(true);
                 hours.setArrowsVisible(true);
                 minutes.setEditable(true);

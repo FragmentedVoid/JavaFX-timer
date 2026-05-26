@@ -58,13 +58,9 @@ public class CustomSpinner extends Spinner<Integer> {
                 "-fx-border-color: #e74c3c; -fx-border-width: 1px;"
             );
 
-            this.getStyleClass().add("split-arrows-vertical");
-            this.lookupAll(".increment-arrow-button").forEach(node -> node.setVisible(false));
-            this.lookupAll(".decrement-arrow-button").forEach(node -> node.setVisible(false));
+            this.getStyleClass().clear();
         } else {
-            this.getStyleClass().remove("split-arrows-vertical");
-            this.lookupAll(".increment-arrow-button").forEach(node -> node.setVisible(true));
-            this.lookupAll(".decrement-arrow-button").forEach(node -> node.setVisible(true));
+            this.getStyleClass().add("spinner");
             this.applyCustomStyles();
         }
     }

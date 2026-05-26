@@ -22,7 +22,6 @@ public class AlarmController {
     }
 
     private void toggleAlarm() {
-        System.out.println(alarm.getHourSpinner().getValue() + ":" + alarm.getMinuteSpinner().getValue());
         if (alarm.getToggleAlarm().getText().equals("OFF")) {
             alarm.getToggleAlarm().setText("ON");
             alarm.getHourSpinner().setEditable(false);
@@ -33,7 +32,6 @@ public class AlarmController {
                 alarmTime = LocalTime.now();
                 alarmHour = alarm.getHourSpinner().getValue();
                 alarmMinute = alarm.getMinuteSpinner().getValue();
-                System.out.println("Current Time: " + alarmTime.getHour() + ":" + alarmTime.getMinute());
                 if (alarmTime.getHour() == alarmHour && alarmTime.getMinute() == alarmMinute) {
                     timeline.stop();
                     alarm.getHourSpinner().setEditable(true);
