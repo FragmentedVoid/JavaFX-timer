@@ -14,6 +14,8 @@ public class Alarm extends HBox{
         hourSpinner = new CustomSpinner(0, 23, 0);
         minuteSpinner = new CustomSpinner(0, 59, 0);
         alarmLable = new TextField();
+        alarmLable.setPrefHeight(30);
+        alarmLable.setPrefWidth(100);
 
         this.getChildren().addAll(hourSpinner, minuteSpinner, alarmLable, toggleAlarm);
     }

@@ -1,7 +1,6 @@
 package me.shane.controller;
 
 import me.shane.view.*;
-import javafx.scene.control.*;
 import javafx.scene.shape.*;
 import javafx.animation.*;
 import javafx.util.Duration;

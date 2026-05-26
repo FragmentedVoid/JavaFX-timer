@@ -38,7 +38,7 @@ public class CustomSpinner extends Spinner<Integer> {
     private void applyCustomStyles() {
         this.getEditor().setStyle("-fx-alignment: center; -fx-font-size: 14px;");
 
-        this.setPrefWidth(60);
+        this.setPrefWidth(65);
         this.setPrefHeight(30);
 
         

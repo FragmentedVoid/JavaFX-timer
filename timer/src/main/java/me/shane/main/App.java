@@ -18,6 +18,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         userview = new Userview();
         scene = new Scene(userview.getView(), 640, 480);
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
